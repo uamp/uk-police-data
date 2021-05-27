@@ -1,6 +1,16 @@
-# app
+# UK Police Data App
 
-## Project setup
+## To run with docker-compose
+```
+docker-compose up -d --build
+```
+
+Then navigate to `localhost:8001`
+
+
+## To run without docker (less preferred)
+
+### Install pre-requisits
 ```
 npm install
 ```
@@ -19,6 +29,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
