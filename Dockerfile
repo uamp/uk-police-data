@@ -4,10 +4,10 @@ FROM node:14.17.0-buster
 # set working directory
 WORKDIR /app
 
+RUN npm install @vue/cli -g
+
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
-
-RUN npm install @vue/cli@3.7.0 -g
 
 # install and cache app dependencies
 COPY package.json /app/package.json
