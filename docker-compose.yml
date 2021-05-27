@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+
+  police-app:
+    container_name: police-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '8001:8080'
