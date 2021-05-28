@@ -2,6 +2,7 @@
   <div class="card">
     <h3>Force Details</h3>
     <div v-if="forceDetails" v-html="forceDetails.description"></div>
+    <br>
     <table class="table" v-if="forceDetails">
       <thead>
         <tr>
