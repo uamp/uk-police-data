@@ -1,5 +1,8 @@
 # UK Police Data App
 
+Built for jHub coding scheme.  
+Uses opensource UK police data https://data.police.uk/docs/method/forces/
+
 ## To run with docker-compose (easiest option)
 ```
 docker-compose up -d --build
