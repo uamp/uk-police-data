@@ -33,11 +33,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-  margin: 60px;
+  margin: 0px;
 }
 .card {
   padding: 60px;
   margin: 30px;
-  border-color:cornflowerblue;
+  background-color: rgb(231, 231, 231);
 }
 </style>
