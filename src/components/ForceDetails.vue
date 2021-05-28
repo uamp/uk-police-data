@@ -1,9 +1,10 @@
 <template>
   <div class="card">
     <h3>Force Details</h3>
-    <div v-if="forceDetails" v-html="forceDetails.description"></div>
+    <div v-if="isLoading">Loading ... </div>
+    <div v-if="!isLoading && forceDetails " v-html="forceDetails.description"></div>
     <br>
-    <table class="table" v-if="forceDetails">
+    <table class="table" v-if="!isLoading && forceDetails">
       <thead>
         <tr>
           <th scope="col">Platform</th>
@@ -29,6 +30,7 @@
     data() {
       return {
         forceDetails: null,
+        isLoading: null,
       };
     },
     created(){
@@ -38,10 +40,12 @@
     },
     methods: {
      getForceDetails(forceID) {
+       this.isLoading=true;
         axios
             .get('https://data.police.uk/api/forces/'+forceID)
             .then(res => {
               this.forceDetails = res.data;
+              this.isLoading = false;
             })
         }
     }

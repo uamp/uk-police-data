@@ -38,6 +38,6 @@ export default {
 .card {
   padding: 60px;
   margin: 30px;
-  border-color: blue;
+  border-color:cornflowerblue;
 }
 </style>
