@@ -36,20 +36,15 @@
       };
     },
     watch: { 
-      forceId(newVal) { // watch it
-          this.getForceDetails(newVal);
+      forceId() { // watch it
+          this.apiCall();
         }
     },
-    created(){
-          /*bus.$on('force-change', (force_id) => {
-            this.getForceDetails(force_id);
-          })*/
-    },
     methods: {
-     getForceDetails(forceID) {
+     apiCall() {
        this.isLoading=true;
         axios
-            .get('https://data.police.uk/api/forces/'+forceID)
+            .get('https://data.police.uk/api/forces/'+this.forceId)
             .then(res => {
               this.forceDetails = res.data;
               this.isLoading = false;

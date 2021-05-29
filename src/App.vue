@@ -17,12 +17,10 @@
 
     <div class="card">
       <div class="row">
-        <div class="col">
+        <div class="col col-md-8">
           <h3>Neighbourhoods</h3>
         </div>
-        <div class="col">
-        </div>
-        <div class="col">
+        <div class="col col-md-4">
           <NeighbourhoodSelect :force-id="forceId" @neighbourhood-change="neighbourhoodChange"/>
         </div>
       </div>
@@ -35,10 +33,9 @@
 </template>
 
 <script>
-//import Forces from './components/Forces.vue';
 import ForceSelect from './components/ForceSelect.vue';
 import ForceDetails from './components/ForceDetails.vue';
-import Neighbourhoods from './components/NeighbourhoodDetails.vue';
+import NeighbourhoodDetails from './components/NeighbourhoodDetails.vue';
 import NeighbourhoodSelect from './components/NeighbourhoodSelect.vue';
 
 export default {
@@ -46,8 +43,8 @@ export default {
   components: {
     ForceSelect,
     ForceDetails,
-    Neighbourhoods,
     NeighbourhoodSelect,
+    NeighbourhoodDetails,
   },
   data() {
     return {

@@ -1,48 +1,52 @@
 <template>
-  <div class="card">
-    <h3>Neighbourhoods</h3>
-    <div v-if="isLoading">Loading ... </div>
-    <table class="table" v-if="!isLoading">
-      <thead>
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="neighbourhood in neighbourhoods" v-bind:key="neighbourhood.id"> 
-          <th scope="row">{{neighbourhood.id}}</th>
-          <td>{{neighbourhood.name}}</td>
-        </tr>
-      </tbody>
-    </table> 
-  </div> 
+  <div class="row">
+    <div class="col col-md-8">
+      <div v-if="isLoading">Loading ... </div>
+      <div v-if="!isLoading && neighbourhoodDetails " v-html="neighbourhoodDetails.description"></div>
+    </div> 
+    <div class="col col-md-4">
+      <iframe width="325" height="280" frameborder="0" :src="mapUrl" scrolling="no">
+      </iframe>
+      <div style="white-space: nowrap; text-align: center; width: 325px; padding: 6px 0;">
+          <a id="largeMapLink" target="_blank" href="https://www.bing.com/maps?cp=51.528099999999995~-0.3053000000000017&amp;sty=r&amp;lvl=11&amp;FORM=MBEDLD">View Larger Map</a> &nbsp; | &nbsp;
+          <a id="dirMapLink" target="_blank" href="https://www.bing.com/maps/directions?cp=51.528099999999995~-0.3053000000000017&amp;sty=r&amp;lvl=11&amp;rtp=~pos.51.528099999999995_-0.3053000000000017____&amp;FORM=MBEDLD">Get Directions</a>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
   import axios from 'axios';
-  import {bus} from '../main';
 
   export default {
-    name: 'Neighbourhoods',
+    name: 'NeighbourhoodDetails',
+    props:[
+      "force-id",
+      "neighbourhood-id",
+    ],
     data() {
       return {
-        neighbourhoods: null,
+        neighbourhoodDetails: null,
         isLoading: null,
+        mapUrl:"https://www.bing.com/maps/embed?h=280&w=325&cp=51.528099999999995~-0.3053000000000017&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8"
       };
     },
-    created(){
-          bus.$on('force-change', (force_id) => {
-            this.getForceNeighbourhoods(force_id);
-          })
+    watch: { 
+      forceId() { // watch it
+          //remove list
+        },
+      neighbourhoodId(){
+        this.apiCall();
+      }
     },
     methods: {
-      getForceNeighbourhoods(force_id) {
+      apiCall() {
         this.isLoading=true;
         axios
-            .get('https://data.police.uk/api/'+force_id+'/neighbourhoods')
+            .get('https://data.police.uk/api/'+this.forceId+'/'+this.neighbourhoodId)
             .then(res => {
-              this.neighbourhoods = res.data;
+              this.neighbourhoodDetails = res.data;
+              this.mapUrl="https://www.bing.com/maps/embed?h=280&w=325&cp="+this.neighbourhoodDetails.centre.latitude+"~"+this.neighbourhoodDetails.centre.longitude+"&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8";
               this.isLoading = false;
             })
       }
