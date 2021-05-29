@@ -23,7 +23,7 @@
         <div class="col">
         </div>
         <div class="col">
-          <ForceSelect @force-change="forceChange"/>
+          <NeighbourhoodSelect :force-id="forceId" @neighbourhood-change="neighbourhoodChange"/>
         </div>
       </div>
     <br>
@@ -39,24 +39,29 @@
 import ForceSelect from './components/ForceSelect.vue';
 import ForceDetails from './components/ForceDetails.vue';
 import Neighbourhoods from './components/Neighbourhoods.vue';
+import NeighbourhoodSelect from './components/NeighbourhoodSelect.vue';
 
 export default {
   name: 'App',
   components: {
     ForceSelect,
     ForceDetails,
-    Neighbourhoods
+    Neighbourhoods,
+    NeighbourhoodSelect,
   },
   data() {
     return {
       forceId: null,
+      neighbourhoodId: null,
     };
   },
   methods: {
     forceChange(selection) {
-                this.forceId=selection;
-                console.log(selection);
-            }
+      this.forceId=selection;
+    },
+    neighbourhoodChange(selection){
+      this.neighbourhoodId=selection;
+    },
   }
 }
 </script>
