@@ -27,6 +27,7 @@
     data() {
       return {
         neighbourhoodDetails: null,
+        neighbourhoodBoundary: null,
         isLoading: null,
         mapUrl:""
       };
@@ -50,6 +51,13 @@
               this.mapUrl="https://www.bing.com/maps/embed?h=280&w=325&cp="+this.neighbourhoodDetails.centre.latitude+"~"+this.neighbourhoodDetails.centre.longitude+"&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8";
               this.isLoading = false;
             })
+        axios
+            .get('https://data.police.uk/api/'+this.forceId+'/'+this.neighbourhoodId+"/boundary")
+            .then(res => {
+              this.neighbourhoodBoundary = res.data;
+              console.log(res.data);
+            })
+
       }
     }
   }
