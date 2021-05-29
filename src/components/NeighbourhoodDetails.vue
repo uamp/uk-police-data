@@ -28,12 +28,13 @@
       return {
         neighbourhoodDetails: null,
         isLoading: null,
-        mapUrl:"https://www.bing.com/maps/embed?h=280&w=325&cp=51.528099999999995~-0.3053000000000017&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8"
+        mapUrl:""
       };
     },
     watch: { 
       forceId() { // watch it
-          //remove list
+          this.neighbourhoodDetails=null;
+          this.mapUrl="";
         },
       neighbourhoodId(){
         this.apiCall();

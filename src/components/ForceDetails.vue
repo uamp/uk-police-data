@@ -6,7 +6,7 @@
     <table class="table" v-if="!isLoading && forceDetails">
       <thead>
         <tr>
-          <th scope="col">Platform</th>
+          <th scope="col">Website</th>
           <th scope="col">Description</th>
         </tr>
       </thead>
@@ -22,7 +22,6 @@
 
 <script>
   import axios from 'axios';
-  //import {bus} from '../main';
 
   export default {
     name: 'ForceDetails',

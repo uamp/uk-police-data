@@ -2,6 +2,7 @@
     <div>
     <select class="form-select" aria-label="Default select example" @change="changeItem($event)">
         <option v-if="isLoading" value="null" selected=true>Loading...</option>
+        <option v-if="!isLoading" value="null" selected=true>Please select...</option>
         <option v-for="neighbourhood in neighbourhoods" v-bind:key="neighbourhood.id" :value=neighbourhood.id>{{neighbourhood.name}}</option>
     </select>
     </div>
@@ -22,18 +23,19 @@
         };
       },
       watch: { 
-        forceId(newVal) { // watch it
-            this.getForceNeighbourhoods(newVal);
+        forceId() { // watch it
+                this.apiCall();
             }
         },
       methods:{
         changeItem: function(event){
           this.$emit('neighbourhood-change',event.target.value)
         },
-        getForceNeighbourhoods(force_id) {
+        apiCall() {
             this.isLoading=true;
+            this.neighbourhoods=null;
             axios
-                .get('https://data.police.uk/api/'+force_id+'/neighbourhoods')
+                .get('https://data.police.uk/api/'+this.forceId+'/neighbourhoods')
                 .then(res => {
                     this.neighbourhoods = res.data;
                     this.isLoading = false;
