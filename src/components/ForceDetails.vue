@@ -1,6 +1,5 @@
 <template>
-  <div class="card">
-    <h3>Force Details</h3>
+  <div> 
     <div v-if="isLoading">Loading ... </div>
     <div v-if="!isLoading && forceDetails " v-html="forceDetails.description"></div>
     <br>
@@ -23,20 +22,28 @@
 
 <script>
   import axios from 'axios';
-  import {bus} from '../main';
+  //import {bus} from '../main';
 
   export default {
     name: 'ForceDetails',
+    props: [
+      "force-id"
+    ],
     data() {
       return {
         forceDetails: null,
         isLoading: null,
       };
     },
+    watch: { 
+      forceId(newVal) { // watch it
+          this.getForceDetails(newVal);
+        }
+    },
     created(){
-          bus.$on('force-change', (force_id) => {
+          /*bus.$on('force-change', (force_id) => {
             this.getForceDetails(force_id);
-          })
+          })*/
     },
     methods: {
      getForceDetails(forceID) {
@@ -52,7 +59,4 @@
   }
 </script>
 <style>
-  h3 {
-    margin-bottom: 5%;
-  }
 </style>

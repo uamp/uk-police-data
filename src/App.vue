@@ -1,7 +1,35 @@
 <template>
-  <div id="app">
-    <ForceSelect @force-change="forceChange"/>
-    <ForceDetails />
+  <div class="container">
+    <div class="card">
+      <div class="row">
+        <div class="col">
+          <h3>UK Police Force</h3>
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+          <ForceSelect @force-change="forceChange"/>
+        </div>
+      </div>
+    <br>
+    <ForceDetails :force-id="forceId"/>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="col">
+          <h3>Neighbourhoods</h3>
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+          <ForceSelect @force-change="forceChange"/>
+        </div>
+      </div>
+    <br>
+    <Neighbourhoods />
+    </div>
+
   </div>
   
 </template>
@@ -10,16 +38,23 @@
 //import Forces from './components/Forces.vue';
 import ForceSelect from './components/ForceSelect.vue';
 import ForceDetails from './components/ForceDetails.vue';
-
+import Neighbourhoods from './components/Neighbourhoods.vue';
 
 export default {
   name: 'App',
   components: {
     ForceSelect,
-    ForceDetails
+    ForceDetails,
+    Neighbourhoods
+  },
+  data() {
+    return {
+      forceId: null,
+    };
   },
   methods: {
     forceChange(selection) {
+                this.forceId=selection;
                 console.log(selection);
             }
   }
@@ -27,17 +62,19 @@ export default {
 </script>
 
 <style>
+html,body{
+  background-color: rgb(240, 240, 240);
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-  margin: 0px;
 }
 .card {
   padding: 60px;
   margin: 30px;
-  background-color: rgb(231, 231, 231);
+  
 }
 </style>

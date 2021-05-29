@@ -1,6 +1,5 @@
 <template>
-    <div class="card">
-      <h3>Select UK Police Force</h3>
+    <div>
     <select class="form-select" aria-label="Default select example" @change="changeItem($event)">
         <option v-for="force in forces" v-bind:key="force.id" :value=force.id>{{force.name}}</option>
     </select>
