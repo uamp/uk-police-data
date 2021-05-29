@@ -37,15 +37,15 @@
           })
     },
     methods: {
-     getForceNeighbourhoods(force_id) {
-       this.isLoading=true;
+      getForceNeighbourhoods(force_id) {
+        this.isLoading=true;
         axios
             .get('https://data.police.uk/api/'+force_id+'/neighbourhoods')
             .then(res => {
               this.neighbourhoods = res.data;
               this.isLoading = false;
             })
-        }
+      }
     }
   }
 </script>

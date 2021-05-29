@@ -27,7 +27,7 @@
         </div>
       </div>
     <br>
-    <Neighbourhoods />
+    <NeighbourhoodDetails :force-id="forceId" :neighbourhood-id="neighbourhoodId" />
     </div>
 
   </div>
@@ -38,7 +38,7 @@
 //import Forces from './components/Forces.vue';
 import ForceSelect from './components/ForceSelect.vue';
 import ForceDetails from './components/ForceDetails.vue';
-import Neighbourhoods from './components/Neighbourhoods.vue';
+import Neighbourhoods from './components/NeighbourhoodDetails.vue';
 import NeighbourhoodSelect from './components/NeighbourhoodSelect.vue';
 
 export default {
