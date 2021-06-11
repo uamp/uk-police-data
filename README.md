@@ -8,11 +8,11 @@ Uses opensource UK police data https://data.police.uk/docs/method/forces/
 docker-compose up -d --build
 ```
 
-
 Then navigate to `localhost:8001`
 
 
-## To run without docker
+
+## Or, run it without docker (requires node/npm to be installed)
 
 ### Install pre-requisits
 ```
