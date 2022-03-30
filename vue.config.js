@@ -1,5 +1,4 @@
-const { defineConfig } = require('@vue/cli-service')
-module.exports = defineConfig({
+module.exports = {
   pluginOptions: {
     s3Deploy: {
       registry: undefined,
@@ -21,4 +20,4 @@ module.exports = defineConfig({
       uploadConcurrency: 5
     }
   }
-})
+}
